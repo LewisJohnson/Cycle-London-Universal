@@ -1,0 +1,82 @@
+﻿<Page
+    x:Class="Cycle_London.CostsPage"    
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Background="{StaticResource BackgroundBrush}" >
+    
+    
+    <Grid>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- todo: Extended information, cost examples -->
+        <!-- Title Panel -->
+        <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <TextBlock x:Uid="Header" Text="Cycle London" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0" />
+            <TextBlock Text="Costs" Style="{ThemeResource HeaderTextBlockStyle}" Margin="0,-12,0,12" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollMode="Disabled" IsDoubleTapEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False">
+
+            <Grid  Margin="19,9.5,19,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="CostsBlock" Grid.Row="0" Grid.Column="0" Style="{ThemeResource BaseTextBlockStyle}"/>
+                <TextBlock x:Name="DescriptionBlock" Grid.Row="0" Grid.Column="1" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,0,0,0"/>
+
+                <Rectangle Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="2" Fill="White" Margin="0,2,0,5" Opacity="0.2" />
+
+                <TextBlock x:Name="Price30MinsBlock" Grid.Row="2" Grid.Column="0" FontSize="75" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                <TextBlock x:Name="ThirtyMinsBlock" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,10,0,0" />
+
+                <TextBlock x:Name ="Price24HBikeTextBox" Grid.Row="3" Grid.Column="0" FontSize="75" Style="{ThemeResource ListViewItemTextBlockStyle}" />
+                <TextBlock x:Name ="DayBikeTextBox" Grid.Row="3" Grid.Column="1"  TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,10,0,0" />
+
+                <TextBlock x:Name ="PriceReturnBlock" Grid.Row="4" Grid.Column="0" FontSize="75" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                <TextBlock x:Name ="ReturnBikeBlock"  Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,10,0,0" />
+
+                <Image Grid.Row="5" Grid.Column="0" Source="Assets/appbar.warning.circle.png"/>
+                <TextBlock x:Name="WarningTextBlock" Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,10,0,0"/>
+
+                <Image Grid.Row="6" Grid.Column="0" Source="Assets/appbar.social.uservoice.png"/>
+                <TextBlock x:Name="InformationTextBlock" Grid.Row="6" Grid.Column="1"  TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,10,0,0"/>
+
+                <TextBlock x:Name="JourneysBlock"  Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="50" Margin="0,10"/>
+
+                <TextBlock x:Name="Journey1Block"  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"  Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                <TextBlock x:Name="Journey1BlockInformation"   Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,45.727,-0.273,0.091" />
+
+                <TextBlock x:Name="Journey2Block"  Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2"  Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                <TextBlock x:Name="Journey2BlockInformation"   Grid.Row="9" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,45.727,-0.273,0.091" />
+
+                <TextBlock x:Name="Journey3Block"  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2"  Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                <TextBlock x:Name="Journey3BlockInformation"   Grid.Row="10" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Margin="10,45.727,-0.273,0.091" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

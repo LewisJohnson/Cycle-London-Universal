@@ -1,0 +1,41 @@
+{
+    "Groups": [
+        {
+            "UniqueId": "Years",
+            "Items": [
+                
+                {
+                    "Year": "Total",
+                    "HiredBikes": "38,746,226"
+                },
+                {
+                    "Year": "2015",
+                    "HiredBikes": "1,834,325"
+                },
+                {
+                    "Year": "2014",
+                    "HiredBikes": "10,023,897"
+
+                },
+                {
+                    "Year": "2013",
+                    "HiredBikes": "8,045,459"
+                },
+                {
+                    "Year": "2012",
+                    "HiredBikes": "9,519,283"
+                },
+                {
+                    "Year": "2011",
+                    "HiredBikes": "7,142,449"
+                },
+                {
+                    "Year": "2010",
+                    "HiredBikes": "2,180,813"
+                }
+            ]
+        }
+    ]
+}
+ 
+   

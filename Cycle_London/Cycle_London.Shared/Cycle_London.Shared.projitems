@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e433f64d-cc99-42e3-8030-8b4e31fa4126</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Cycle_London</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)DataModels\DataSourceUrl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModels\BikePointsDataSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataModels\StatsDataSource.cs" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.currency.pound.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.flag.wavy.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.graph.line.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.heart.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.map.location.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.social.uservoice.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.star.add.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.warning.circle.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\appbar.warning.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Blue1.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Blue2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Blue3.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Blue4.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\cycle-hire-pushpin-icon.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LogoLarge.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\LogoLargeNoWheels.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\RING_RING.wav" />
+    <Content Include="$(MSBuildThisFileDirectory)DataModels\BikePoint.json" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\RelayCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
+    <Content Include="$(MSBuildThisFileDirectory)DataModels\StatsData.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-GB\Resources.resw" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,224 @@
+﻿<Page xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+      x:Class="Cycle_London.HubPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d"
+      DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}">
+    <Page.Resources>
+        <DataTemplate x:Key="HubSectionHeaderTemplate">
+            <TextBlock Margin="0,0,0,-9.5" Text="{Binding}" />
+        </DataTemplate>
+
+        <x:String x:Key="AboutString">This app was made for a London Hack-athon contest. The contest was hosted by Programmr and sponsored by Hired.com. The brief was to make a cool app for London. So, I made this, because everyone knows cycling is cool, even Boris Johnson.</x:String>
+
+        <x:String x:Key="HelloString">Hello!</x:String>
+        <Storyboard x:Name="RingRingBikeStoryboard">
+            <DoubleAnimation Duration="0:0:5" To="4000" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="Bikeimage" d:IsOptimized="True"/>
+        </Storyboard>
+
+    </Page.Resources>
+    <Page.Background>
+        <StaticResource ResourceKey="BackgroundBrush" />
+    </Page.Background>
+    <Page.BottomAppBar>
+
+        <CommandBar>
+            <AppBarButton  Label="Find me" Click="FineMe_OnClick" Icon="Map" />
+
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Programmr" Click="FlyoutTapEvents_OnTapped" Tag="Programmr" />
+                <AppBarButton Label="Hired" Click="FlyoutTapEvents_OnTapped" Tag="Hired" />
+                <AppBarButton Label="Modern UI Icons" Click="FlyoutTapEvents_OnTapped" Tag="Icons" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Hub x:Uid="Hub" Header="Cycle London">
+            <!-- MAP !-->
+            <HubSection x:Uid="MapSection" x:Name="MapHeader"
+                        HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}" Width="570">
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="7.478"/>
+                                <ColumnDefinition Width="96.522"/>
+                                <ColumnDefinition Width="9.379"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <maps:MapControl Grid.Row="0" Width="300" Grid.Column="0" x:Name="BikeMap" MapServiceToken="Ahs_1OPV3NCxO6Q66lk7w94wXTyRLPGEG6YrIPVDgZfFH47jbzkS7BbXV5Dshoj7" Loaded="BikeMap_OnLoaded" Margin="0,0,0,-326" Grid.RowSpan="4"  />
+
+                            <TextBlock Grid.Row="0" Grid.Column="2" Text="Name" Style="{ThemeResource TitleTextBlockStyle}" />
+                            <TextBlock Grid.Row="0" Grid.Column="4" Text="Clapham Common" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Bikes" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            <TextBlock Grid.Row="1" Grid.Column="4" Text="19" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Empty Docks" Style="{ThemeResource TitleTextBlockStyle}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="4" Text="6" Style="{ThemeResource BodyTextBlockStyle}"/>
+
+
+
+
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+            <!-- EXTRAS !-->
+            <HubSection x:Uid="HubSection1" x:Name="ExtrasHeader"
+                        HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <DataTemplate>
+                    <ListView>
+
+                        <!-- COSTS !-->
+                        <StackPanel>
+                            <ListViewItem Margin="0,0,0,10" Tag="Costs" Tapped="ListViewTapEvents_OnTapped">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Grid.Column="0" BorderBrush="White" BorderThickness="3">
+                                        <Image Source="Assets/appbar.currency.pound.png"
+                                           Stretch="UniformToFill"
+                                           Height="79" Width="79" />
+                                    </Border>
+                                    <StackPanel Grid.Column="1" Margin="14.5,0,0,0">
+                                        <TextBlock Text="Costs"
+                                               Style="{ThemeResource ListViewItemTextBlockStyle}" />
+                                        <TextBlock Text="Information on the hire costs and times."
+                                               Style="{ThemeResource ListViewItemContentTextBlockStyle}"
+                                               Foreground="{ThemeResource PhoneMidBrush}" TextWrapping="Wrap"
+                                               Padding="2" />
+                                    </StackPanel>
+                                </Grid>
+                            </ListViewItem>
+                        </StackPanel>
+
+                        <!-- BIKE Points !-->
+                        <ListViewItem Margin="0,0,0,10" Tag="Points" Tapped="ListViewTapEvents_OnTapped">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderBrush="White" BorderThickness="3">
+                                    <Image Source="Assets/appbar.flag.wavy.png"
+                                           Stretch="UniformToFill"
+                                           Height="79" Width="79" />
+                                </Border>
+                                <StackPanel Grid.Column="1" Margin="14.5,0,0,0">
+                                    <TextBlock Text="Bike Points"
+                                               Style="{ThemeResource ListViewItemTextBlockStyle}" />
+                                    <TextBlock Padding="2" Text="A list of points where bikes are available to hire."
+                                               Style="{ThemeResource ListViewItemContentTextBlockStyle}"
+                                               Foreground="{ThemeResource PhoneMidBrush}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </ListViewItem>
+
+                        <!-- STATS !-->
+                        <ListViewItem Margin="0,0,0,10" Tag="Stats" Tapped="ListViewTapEvents_OnTapped">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderBrush="White" BorderThickness="3">
+                                    <Image Source="Assets/appbar.graph.line.png"
+                                           Stretch="UniformToFill"
+                                           Height="79" Width="79" />
+                                </Border>
+                                <StackPanel Grid.Column="1" Margin="14.5,0,0,0">
+                                    <TextBlock Text="Statistics"
+                                               Style="{ThemeResource ListViewItemTextBlockStyle}" />
+                                    <TextBlock Padding="2" Text="Statistics from the schemes past and present."
+                                               Style="{ThemeResource ListViewItemContentTextBlockStyle}"
+                                               Foreground="{ThemeResource PhoneMidBrush}" TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Grid>
+                        </ListViewItem>
+                    </ListView>
+                </DataTemplate>
+            </HubSection>
+
+            <!-- ABOUT !-->
+            <HubSection x:Uid="HubSection2" x:Name="AboutHeader" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="300" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Padding="2" Grid.Row="0" Text="{StaticResource HelloString}" TextWrapping="Wrap"
+                                       FontSize="18" Style="{ThemeResource TitleTextBlockStyle}" />
+
+                            <TextBlock Padding="2" Grid.Row="2" Text="{StaticResource AboutString}" TextWrapping="Wrap"
+                                       FontSize="18" Style="{ThemeResource BodyTextBlockStyle}" />
+
+                            <Button Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Tapped="RingRing_OnTapped" IsDoubleTapEnabled="False" IsHoldingEnabled="False"
+                                    IsRightTapEnabled="False" BorderThickness="0" Background="{x:Null}"
+                                    BorderBrush="{x:Null}" Opacity="0.1">
+                                <Image Source="Assets/LogoLarge.png" />
+                            </Button>
+
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4"
+                                       Text="Version 0.1.0" TextWrapping="Wrap" Foreground="#7FFFFFFF" />
+
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5"
+                                       Text="Lewis Johnson" TextWrapping="Wrap" Foreground="#7FFFFFFF" />
+
+
+                            <Grid Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="Made with"
+                                           Foreground="#7FFFFFFF" />
+                                <Image Grid.Column="1" Source="Assets/appbar.heart.png" MaxHeight="15"
+                                       Stretch="UniformToFill" Opacity="0.5" />
+                                <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="in London"
+                                           Foreground="#7FFFFFFF" />
+                            </Grid>
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+        <MediaElement x:Name="RingRing" Source="Assets/RING_RING.wav" AutoPlay="False" Visibility="Collapsed" />
+        <Image x:Name="Bikeimage" Source="Assets/LogoLarge.png" Visibility="Collapsed" Margin="-603,151,491,0" Width="512" RenderTransformOrigin="0.5,0.5"  Stretch="UniformToFill">
+            <Image.RenderTransform>
+                <CompositeTransform/>
+            </Image.RenderTransform>
+            <Image.Projection>
+                <PlaneProjection/>
+            </Image.Projection>
+        </Image>
+    </Grid>
+</Page>

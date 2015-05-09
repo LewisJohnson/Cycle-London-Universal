@@ -1,0 +1,460 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:bm="using:Bing.Maps"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    x:Class="Cycle_London.HubPage"
+    DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
+    mc:Ignorable="d" Name="HubPagePage">
+
+    <Page.Resources>
+        <DataTemplate x:Key="HubSectionHeaderTemplate">
+            <TextBlock Margin="0,0,0,-9.5" Text="{Binding}" />
+        </DataTemplate>
+
+        <DataTemplate x:Key="StandardStatsTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="25"/>
+                    <RowDefinition Height="29*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="120"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="{Binding Year}" FontSize="50" Grid.RowSpan="2" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Text="Bikes Hired" Style="{ThemeResource TitleTextBlockStyle}"
+        			Grid.Row="0" />
+                <TextBlock Grid.Column="1" Text="{Binding HiredBikes}" Style="{ThemeResource BodyTextBlockStyle}"
+        			Grid.Row="1" VerticalAlignment="Top"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="StandardBikePointTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.ChildrenTransitions>
+                    <TransitionCollection>
+                        <EntranceThemeTransition IsStaggeringEnabled="False"/>
+                    </TransitionCollection>
+                </Grid.ChildrenTransitions>
+
+                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Name " Grid.Column="0" Grid.Row="0"/>
+                <TextBlock Text="{Binding CommonName}" Grid.Column="1" Grid.Row="0" Style="{ThemeResource BaseTextBlockStyle}" />
+                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Empty Docks" Grid.Column="0" Grid.Row="1"/>
+                <TextBlock Text="{Binding NbEmptyDocks}" Grid.Column="1" Grid.Row="1" Style="{ThemeResource BaseTextBlockStyle}"/>
+                <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="Bikes to hire " Grid.Column="0" Grid.Row="2"/>
+                <TextBlock Text="{Binding NbBikes}" Grid.Column="1" Grid.Row="2" Style="{ThemeResource BaseTextBlockStyle}" />
+
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Name="ExtendedBikePointTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Name " Grid.Column="0" Grid.Row="0"/>
+                <TextBlock Text="{Binding CommonName}" Grid.Column="1" Grid.Row="0" />
+
+                <TextBlock Text="ID " Grid.Column="0" Grid.Row="1"/>
+                <TextBlock Text="{Binding Id}" Grid.Column="1" Grid.Row="1" />
+
+                <TextBlock Text="Terminal Name " Grid.Column="0" Grid.Row="2"/>
+                <TextBlock Text="{Binding TerminalName}" Grid.Column="1" Grid.Row="2" />
+
+                <TextBlock Text="Latitude " Grid.Column="0" Grid.Row="3"/>
+                <TextBlock Text="{Binding Lat}" Grid.Column="1" Grid.Row="3" />
+
+                <TextBlock Text="Longitude " Grid.Column="0" Grid.Row="4"/>
+                <TextBlock Text="{Binding Lon}" Grid.Column="1" Grid.Row="4" />
+
+                <TextBlock Text="Installed" Grid.Column="0" Grid.Row="5"/>
+                <TextBlock Text="{Binding Installed}" Grid.Column="1" Grid.Row="5" />
+
+                <TextBlock Text="Locked " Grid.Column="0" Grid.Row="6"/>
+                <TextBlock Text="{Binding Locked}" Grid.Column="1" Grid.Row="6" />
+
+                <TextBlock Text="Installation date " Grid.Column="0" Grid.Row="7"/>
+                <TextBlock Text="{Binding InstallDate}" Grid.Column="1" Grid.Row="7" />
+
+                <TextBlock Text="Removal date " Grid.Column="0" Grid.Row="8"/>
+                <TextBlock Text="{Binding RemovalDate}" Grid.Column="1" Grid.Row="8" />
+
+                <TextBlock Text="Temporary " Grid.Column="0" Grid.Row="9"/>
+                <TextBlock Text="{Binding Temporary}" Grid.Column="1" Grid.Row="9" />
+
+                <TextBlock Text="Empty Docks " Grid.Column="0" Grid.Row="10"/>
+                <TextBlock Text="{Binding NbEmptyDocks}" Grid.Column="1" Grid.Row="10" />
+
+                <TextBlock Text="Bikes to hire " Grid.Column="0" Grid.Row="11"/>
+                <TextBlock Text="{Binding NbBikes}" Grid.Column="1" Grid.Row="11"/>
+
+                <TextBlock Text="Total Docks " Grid.Column="0" Grid.Row="12"/>
+                <TextBlock Text="{Binding NbDocks}" Grid.Column="1" Grid.Row="12"/>
+
+                <Rectangle Grid.Row="13" Grid.Column="0" Grid.ColumnSpan="2" Fill="#4CFFFFFF" Height="2" />
+
+
+            </Grid>
+        </DataTemplate>
+        <x:String x:Key="AboutString">This app was made for a London Hackathon contest. The contest was hosted by Programmr and sponsored by Hired.com. The brief was to make a cool app for London. So, I made this, because everyone knows cycling is cool, even Boris Johnson.</x:String>
+        <x:String x:Key="HelloString">Hello!</x:String>
+
+        <Storyboard x:Name="RingRingBikeStoryboard">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.GlobalOffsetX)" Storyboard.TargetName="Bikeimage">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-2980"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="3130"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Page.Resources>
+    <Page.Background>
+        <StaticResource ResourceKey="BackgroundBrush" />
+    </Page.Background>
+
+    <Page.BottomAppBar>
+        <CommandBar >
+            <AppBarButton Label="Hackathon" Icon="Globe">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+
+                        <MenuFlyoutItem Text="Programmr" Tapped="FlyoutTapEvents_OnTapped" Tag="Programmr" />
+                        <MenuFlyoutItem Text="Hired" Tapped="FlyoutTapEvents_OnTapped" Tag="Hired" />
+                        <MenuFlyoutItem Text="Modern UI Icons" Tapped="FlyoutTapEvents_OnTapped" Tag="Icons" />
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+            <AppBarToggleButton Click="ButtonBase_OnClick" Icon="List" Label="Extended Information" />
+            <AppBarButton Label="Find me" Click="FindMe_OnClick" Icon="Map" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid>
+        <Hub x:Uid="Hub" x:Name="GlobalHub" Header="Cycle London">
+
+            <!-- MAP !-->
+            <HubSection x:Name="MapSection" Header="FIND A BIKE" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/blue1.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Canvas Width="800" Height="800">
+                            
+                            <bm:Map Height="800" Width="800" HorizontalAlignment ="Left"  Credentials="Ahs_1OPV3NCxO6Q66lk7w94wXTyRLPGEG6YrIPVDgZfFH47jbzkS7BbXV5Dshoj7" Loaded ="BikeMap_OnLoaded" ShowScaleBar="True"  ShowBuildings="True"  />
+                            <Canvas Name="MapInfo" Loaded="MapInfo_OnLoaded">
+                                <Canvas.Projection>
+                                    <PlaneProjection LocalOffsetY="80"/>
+                                </Canvas.Projection>
+                                <Rectangle  Canvas.Top="680" Fill="#FF303030" Height="120" Width="400"/>
+                            <Grid Margin="0,0,572,671" Canvas.Left="20" Canvas.Top="680">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition IsStaggeringEnabled="False"/>
+                                    </TransitionCollection>
+                                </Grid.ChildrenTransitions>
+
+                                <TextBlock FontSize="15" Margin="0,10" Style="{ThemeResource BaseTextBlockStyle}" Text="Name " Grid.Column="0" Grid.Row="0"/>
+                                <TextBlock Margin="10,10" FontSize="15" x:Name="MainName" Loaded="MainName_OnLoaded" Grid.Column="1" 
+									Grid.Row="0" Style="{ThemeResource BaseTextBlockStyle}" />
+
+                                <TextBlock Margin="0,10" FontSize="15" Style="{ThemeResource BaseTextBlockStyle}" Text="Empty Docks" Grid.Column="0" Grid.Row="1"/>
+                                <TextBlock Margin="10,10" FontSize="15" x:Name="MainDocks" Loaded="MainDocks_OnLoaded" Text="{Binding NbEmptyDocks}" Grid.Column="1" Grid.Row="1" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                                <TextBlock Margin="0,10" FontSize="15" x:Name="MainHires"  Style="{ThemeResource BaseTextBlockStyle}" Text="Bikes to hire " Grid.Column="0" Grid.Row="2"/>
+
+                                <TextBlock Loaded="MainBikes_OnLoaded" Margin="10,10" FontSize="15" Text="{Binding NbBikes}" Grid.Column="1" Grid.Row="2" Style="{ThemeResource BaseTextBlockStyle}" />
+
+                            </Grid>
+                            </Canvas>
+                        </Canvas>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+            <!-- BIKE POINTS !-->
+            <HubSection x:Name="BikePoints" Width="512"  Header="BIKE POINTS" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}" DataContext="{Binding BikesShort}" >
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Blue2.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <Grid  Width="430">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ComboBox x:Name="BikeSearchCombo"  Grid.Row="0" Grid.Column="0" Loaded="BikeSearchCombo_OnLoaded" SelectedIndex="0" >
+
+                            <ComboBoxItem Tag="Name" Content="Name">
+                                <ComboBoxItem.ContentTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromHorizontalOffset="20"/>
+                                    </TransitionCollection>
+                                </ComboBoxItem.ContentTransitions>
+                            </ComboBoxItem>
+                            <ComboBoxItem Tag="Id" Content="Id">
+                                <ComboBoxItem.ContentTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromHorizontalOffset="30"/>
+                                    </TransitionCollection>
+                                </ComboBoxItem.ContentTransitions>
+                            </ComboBoxItem>
+                            <ComboBoxItem Tag="Lat" Content="Lat">
+                                <ComboBoxItem.ContentTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition/>
+                                    </TransitionCollection>
+                                </ComboBoxItem.ContentTransitions>
+                            </ComboBoxItem>
+                            <ComboBoxItem Tag="Lon" Content="Lon">
+                                <ComboBoxItem.ContentTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition FromHorizontalOffset="50"/>
+                                    </TransitionCollection>
+                                </ComboBoxItem.ContentTransitions>
+                            </ComboBoxItem>
+                        </ComboBox>
+
+                        <SearchBox Grid.Row="0" Grid.Column="1" FocusOnKeyboardInput="True" ChooseSuggestionOnEnter="True" PlaceholderText="Search"  QueryChanged="SearchBox_OnQueryChanged" />
+
+                        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" Margin="0,15,0,0" Loaded="ScrollViewer_OnLoaded"  HorizontalScrollMode="Disabled">
+                            <ListView x:Uid="BikeList"
+                        
+								ItemsSource="{Binding [0]}"
+								SelectionMode="Single"
+								Loaded="BikeListLoaded"
+								ItemClick="ListViewBase_OnItemClick"
+								IsItemClickEnabled="True"
+                                      />
+                        </ScrollViewer>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+
+            <!-- COSTS !-->
+            <HubSection Width="512" Header="COSTS" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Blue3.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <ScrollViewer HorizontalScrollMode="Disabled">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Rectangle Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" MinHeight="2" Fill="White" Margin="0,2,0,5" Opacity="0.2" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0" Text="£0" FontSize="75" />
+                            <TextBlock Grid.Row="1" Grid.Column="1" Text="First 30 minutes of each journey." TextWrapping="Wrap" Padding="2,2,2,2" Margin="10,10,0,0" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0" Text="£2" FontSize="75" />
+                            <TextBlock Grid.Row="2" Grid.Column="1" Text="This will get you 24 hours of access to a bike." TextWrapping="Wrap" Padding="2,2,2,2"  Margin="10,10,0,0" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0" Text="£2" FontSize="75" />
+                            <TextBlock Grid.Row="3" Grid.Column="1" Text="Everytime you return a bike to a bike point." TextWrapping="Wrap" Padding="2,2,2,2" Margin="10,10,0,0" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                            <Image Grid.Row="4" Grid.Column="0" Source="Assets/appbar.warning.circle.png"/>
+                            <TextBlock Grid.Row="4" Grid.Column="1" Text="You must return a bike within 24 hours. You could be charged up to £300 if you damage a bike or don't return it" TextWrapping="Wrap" Padding="2,2,2,2"  Margin="10,10,0,0" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                            <Image Grid.Row="5" Grid.Column="0" Source="Assets/appbar.social.uservoice.png"/>
+                            <TextBlock Grid.Row="5" Grid.Column="1" Text="Your bike access period begins as soon as payment is taken - not when you first use a bike The scheme accepts all major credit or debit cards (it does not accept cash or Oyster) You must be 18 or over to hire a bike, and over 14 to ride one Terms and conditions apply" TextWrapping="Wrap" Padding="2,2,2,2" Margin="10,10,0,0" Style="{ThemeResource BaseTextBlockStyle}"/>
+
+                            <TextBlock Text="Juan's journey"  Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10"  Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                            <TextBlock Text="To hire, Juan buys bike access for 24 hours and cycles for 15 minutes to Trafalgar Square, docking his bike near by. Later that day he takes out another bike for 22 minutes to go to the theatre. Both journeys were under 30 minutes and within the 24 hours, so Juan simply pays £2." Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,45.727,-0.273,0.091" />
+
+                            <TextBlock Text="Claire's journey"  Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10"  Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                            <TextBlock Text="To hire, Claire also buys bike access for 24 hours, but she takes a bike out for 50 minutes. She takes another bike out later that day and rides for 35 minutes. Both her journeys were between 30 minutes and an hour, and were made within the 24-hour period. Claire pays £2 bike access plus two £2 extra ride charges. Her total cost is £6." Grid.Row="9" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,45.727,-0.273,0.091" />
+
+                            <TextBlock Text="Latisha's journey"  Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10" Style="{ThemeResource SubheaderTextBlockStyle}"/>
+                            <TextBlock Text="To hire, Latisha buys bike access for 24 hours, rides in the park for two hours, and returns her bike nearby. The first 30 minutes are free and each extra period of up to 30 minutes costs £2, so Latisha pays £8 in total." Grid.Row="10" Grid.Column="1" TextWrapping="Wrap" Padding="2,2,2,2" Style="{ThemeResource BaseTextBlockStyle}" Margin="10,45.727,-0.273,0.091" />
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+
+            <!-- STATS !-->
+            <HubSection Width="412" Header="STATISTICS" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}"  DataContext="{Binding Costs[0]}" >
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Blue4.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <ScrollViewer Width="329" HorizontalScrollMode="Disabled">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0" MinHeight="2" Fill="White" Margin="0,2,0,5" Opacity="0.2" />
+
+                            <ListView
+								Grid.Row="1"
+								Margin="0,10,0,-1"
+								ItemsSource="{Binding Items}"
+								ItemTemplate="{StaticResource StandardStatsTemplate}"
+								SelectionMode="None"
+                                 />
+                        </Grid>
+
+                    </ScrollViewer>
+                </DataTemplate>
+            </HubSection>
+
+
+            <!-- ABOUT -->
+            <HubSection Width="412" Header="ABOUT" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Blue3.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Rectangle Grid.Row="0" Grid.Column="0"  MinHeight="2" Fill="White" Margin="0,2,0,5" Opacity="0.2" />
+
+                        <TextBlock Padding="2" Grid.Row="1" Text="{StaticResource HelloString}" TextWrapping="Wrap"
+							FontSize="18" Style="{ThemeResource TitleTextBlockStyle}" />
+
+                        <TextBlock Padding="2" Grid.Row="3" Text="{StaticResource AboutString}" TextWrapping="Wrap"
+							Style="{ThemeResource BaseTextBlockStyle}" />
+
+                        <Button Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"
+							Tapped="RingRing_OnTapped" IsDoubleTapEnabled="False" IsHoldingEnabled="False"
+							IsRightTapEnabled="False" BorderThickness="0" Background="{x:Null}"
+							BorderBrush="{x:Null}" Opacity="0.05">
+                            <Image Source="Assets/LogoLarge.png" />
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+
+            <!-- Seperator -->
+            <HubSection Background="#FF3393FF" Width="2"/>
+
+            <!-- Disclaimer -->
+            <HubSection>
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Blue3.png" Stretch="UniformToFill" />
+                </HubSection.Background>
+                <DataTemplate>
+                    <Grid Width="135" Tapped="DiscGrid_Tapped">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="480 " />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+
+                        </Grid.RowDefinitions>
+                        <TextBlock  Grid.Row="0" Text="Statistics are correct at the time of build. Last updated 14/05/2015. Bikepoint information provided by TFL and is updated every 3 minutes. TFL terms and conditions apply when buying a bike." Opacity="0.3"  TextWrapping="Wrap" TextAlignment="Center" 
+                                   />
+
+
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2"
+							Text="Version 0.1.0" TextWrapping="Wrap" Foreground="White" Opacity="0.3" />
+
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3"
+							Text="Lewis Johnson" TextWrapping="Wrap" Foreground="White" Opacity="0.3" />
+
+
+                        <Grid Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock VerticalAlignment="Center" Grid.Column="0" Text="Made with"
+								Foreground="#7FFFFFFF" Opacity="0.3" />
+                            <Image Grid.Column="1" Source="Assets/appbar.heart.png" MaxHeight="15"
+								Stretch="UniformToFill" Opacity="0.3" />
+                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="in London"
+								Foreground="#7FFFFFFF" Opacity="0.3"  />
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+
+        </Hub>
+        <MediaElement x:Name="RingRing" Source="Assets/RING_RING.wav" AutoPlay="False" Visibility="Collapsed" />
+        <Image x:Name="Bikeimage" Source="Assets/LogoLarge.png" Visibility="Collapsed" x:FieldModifier="public">
+            <Image.Projection>
+                <PlaneProjection/>
+            </Image.Projection>
+        </Image>
+
+
+
+        <Rectangle Visibility="Collapsed" x:Name="Backdrop" Fill="DodgerBlue"/>
+        <ProgressRing x:Name="ProgressRing" Height="70" Width="70" Foreground="White" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <TextBlock Visibility="Collapsed" x:Name="TextBlock" Text="Fetching data from TFL." FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+    </Grid>
+</Page>

@@ -2,12 +2,15 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Resources;
 using Windows.Devices.Geolocation;
+using Windows.Foundation;
 using Windows.Graphics.Display;
 using Windows.System;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Maps;
 using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Cycle_London.Common;
 
@@ -79,11 +82,6 @@ namespace Cycle_London
                 _bikeMapControl.Center = geoposition.Coordinate.Point;
                 _bikeMapControl.ZoomLevel = 13;
             }
-
-            //var pushpin = new Pushpin();
-            //
-            //MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
-            //_bikeMap.Children.Add(pushpin);
 
 
         }
@@ -168,10 +166,6 @@ namespace Cycle_London
         {
             await Launcher.LaunchUriAsync(uri);
         }
-
-
-
-
 
         private void ListViewTapEvents_OnTapped(object sender, TappedRoutedEventArgs e)
         {

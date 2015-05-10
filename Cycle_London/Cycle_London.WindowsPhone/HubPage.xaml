@@ -39,40 +39,10 @@
         <Hub x:Uid="Hub" Header="Cycle London">
             <!-- MAP !-->
             <HubSection x:Uid="MapSection" x:Name="MapHeader"
-                        HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}" Width="570">
+                        HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">
                 <DataTemplate>
-                    <ScrollViewer>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="7.478"/>
-                                <ColumnDefinition Width="96.522"/>
-                                <ColumnDefinition Width="9.379"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                            <maps:MapControl Width="300" x:Name="BikeMap" MapServiceToken="Ahs_1OPV3NCxO6Q66lk7w94wXTyRLPGEG6YrIPVDgZfFH47jbzkS7BbXV5Dshoj7" Loaded="BikeMap_OnLoaded"  />
 
-                            <maps:MapControl Grid.Row="0" Width="300" Grid.Column="0" x:Name="BikeMap" MapServiceToken="Ahs_1OPV3NCxO6Q66lk7w94wXTyRLPGEG6YrIPVDgZfFH47jbzkS7BbXV5Dshoj7" Loaded="BikeMap_OnLoaded" Margin="0,0,0,-326" Grid.RowSpan="4"  />
-
-                            <TextBlock Grid.Row="0" Grid.Column="2" Text="Name" Style="{ThemeResource TitleTextBlockStyle}" />
-                            <TextBlock Grid.Row="0" Grid.Column="4" Text="Clapham Common" Style="{ThemeResource BodyTextBlockStyle}"/>
-
-                            <TextBlock Grid.Row="1" Grid.Column="2" Text="Bikes" Style="{ThemeResource TitleTextBlockStyle}"/>
-                            <TextBlock Grid.Row="1" Grid.Column="4" Text="19" Style="{ThemeResource BodyTextBlockStyle}"/>
-
-                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Empty Docks" Style="{ThemeResource TitleTextBlockStyle}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="4" Text="6" Style="{ThemeResource BodyTextBlockStyle}"/>
-
-
-
-
-                        </Grid>
-                    </ScrollViewer>
                 </DataTemplate>
             </HubSection>
 

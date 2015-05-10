@@ -1,6 +1,9 @@
 # Cycle London
 
-Theres now a video! : http://youtu.be/-z3iZvoW3kw
+Theres now a video! : http://youtu.be/-z3iZvoW3kw#
+And a Website! : http://lewisj489.github.io/Cycle-London-Universal/
+
+I will upload the app to the store in due time.
 
 ####What?
 Cycle London is a Windows universal app. 

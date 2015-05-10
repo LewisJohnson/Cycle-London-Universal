@@ -1,5 +1,7 @@
 # Cycle London
 
+Theres now a video! : http://youtu.be/-z3iZvoW3kw
+
 ####What?
 Cycle London is a Windows universal app. 
 The app(s) main goal is to help tourists and commuters find a Santander Bike point in London with ease.

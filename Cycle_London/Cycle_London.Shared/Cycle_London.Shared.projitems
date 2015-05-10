@@ -33,7 +33,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\Blue4.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\cycle-hire-pushpin-icon.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\LogoLarge.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\LogoLargeNoWheels.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\RING_RING.wav" />
     <Content Include="$(MSBuildThisFileDirectory)DataModels\BikePoint.json" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />

@@ -4,10 +4,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bm="using:Bing.Maps"
-    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     x:Class="Cycle_London.HubPage"
     DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
-    mc:Ignorable="d" Name="HubPagePage">
+    mc:Ignorable="d" Name="HubPagePage" SizeChanged="HubPage_OnSizeChanged">
 
     <Page.Resources>
         <DataTemplate x:Key="HubSectionHeaderTemplate">
@@ -167,16 +166,16 @@
                     <ImageBrush ImageSource="Assets/blue1.png" Stretch="UniformToFill" />
                 </HubSection.Background>
                 <DataTemplate>
-                    <ScrollViewer>
-                        <Canvas Width="800" Height="800">
+                    <ScrollViewer Loaded="Map_OnLoaded" >
+                        <Canvas Width="800" Height="800" Name="Mapcanvas" Loaded="Mapcanvas_OnLoaded">
                             
                             <bm:Map Height="800" Width="800" HorizontalAlignment ="Left"  Credentials="Ahs_1OPV3NCxO6Q66lk7w94wXTyRLPGEG6YrIPVDgZfFH47jbzkS7BbXV5Dshoj7" Loaded ="BikeMap_OnLoaded" ShowScaleBar="True"  ShowBuildings="True"  />
                             <Canvas Name="MapInfo" Loaded="MapInfo_OnLoaded">
                                 <Canvas.Projection>
                                     <PlaneProjection LocalOffsetY="80"/>
                                 </Canvas.Projection>
-                                <Rectangle  Canvas.Top="680" Fill="#FF303030" Height="120" Width="400"/>
-                            <Grid Margin="0,0,572,671" Canvas.Left="20" Canvas.Top="680">
+                                <Rectangle  Canvas.Top="680" Fill="#FF303030" Height="120" Width="400" Name="InfoRectangle" Loaded="InfoRectangle_OnLoaded"/>
+                            <Grid Margin="0,0,572,671" Canvas.Left="20" Canvas.Top="680" Name ="InfoGrid" Loaded="InfoGrid_OnLoaded">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
@@ -281,7 +280,7 @@
                     <ImageBrush ImageSource="Assets/Blue3.png" Stretch="UniformToFill" />
                 </HubSection.Background>
                 <DataTemplate>
-                    <ScrollViewer HorizontalScrollMode="Disabled">
+                    <ScrollViewer HorizontalScrollMode="Disabled" Loaded="FrameworkElement_OnLoaded">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>

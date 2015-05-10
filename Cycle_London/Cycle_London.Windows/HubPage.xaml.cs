@@ -5,8 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.Devices.Geolocation;
-using Windows.Foundation;
-using Windows.Networking.Sockets;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -42,6 +40,12 @@ namespace Cycle_London
         private TextBlock _mainDocks = new TextBlock();
         private TextBlock _mainBikes = new TextBlock();
         private Canvas _mapInfoCanvas = new Canvas();
+        private ScrollViewer _bikePointsScrollViewer = new ScrollViewer();
+        private ScrollViewer _otherScrollViewer = new ScrollViewer();
+        private ScrollViewer _mapScrollViewer = new ScrollViewer();
+        private Canvas _mapCanvas = new Canvas();
+        private Rectangle _infoRectangle = new Rectangle();
+        private Grid _infoGrid = new Grid();
 
         private readonly Pushpin _selfpushpin = new Pushpin
         {
@@ -53,7 +57,7 @@ namespace Cycle_London
         //-----------------------------------//
 
         private bool _descExpanded;
-        private bool _tapped = false;
+        private bool _tapped;
         private double _descwidth = 100;
         private double _descTextFaded = 0.3;
         private double _descTextFull = 1;
@@ -115,6 +119,8 @@ namespace Cycle_London
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             await GetData();
+            Canvas.SetTop(_infoRectangle, _mapCanvas.Height - 120);
+            Canvas.SetTop(_infoGrid, _mapCanvas.Height - 120);
         }
 
         private async Task GetData()
@@ -146,7 +152,10 @@ namespace Cycle_London
                     item.AdditionalProperties[7].Value,
                     item.AdditionalProperties[8].Value));
 
-                var pushpin = new Pushpin();
+                var pushpin = new Pushpin
+                {
+                    Background = new SolidColorBrush(Colors.DodgerBlue)
+                }
                 MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
                 _bikeMap.Children.Add(pushpin);
                 pushpin.Tapped += BikePointPin_Tapped;
@@ -324,7 +333,7 @@ namespace Cycle_London
 
         void BikePointPin_Tapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
-            var up = new PlaneProjection {LocalOffsetY = 0};
+            var up = new PlaneProjection { LocalOffsetY = 0 };
             _mapInfoCanvas.Projection = up;
             _mapInfoCanvas.Opacity = 1;
             _tapped = true;
@@ -339,7 +348,7 @@ namespace Cycle_London
             foreach (var item in BikeDataGroups
                 .Where(item => item.Lat == pos.Latitude)
                 .Where(item => item.Lon == pos.Longitude))
-                {
+            {
                 _mainName.Text = item.CommonName;
                 _mainDocks.Text = item.AdditionalProperties[7].Value;
                 _mainBikes.Text = item.AdditionalProperties[6].Value;
@@ -593,50 +602,12 @@ namespace Cycle_London
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            GlobalHub.ScrollToSection(BikePoints);
             var btn = sender as AppBarToggleButton;
             if (btn == null) return;
             var check = btn.IsChecked;
             _bikepointListView.ItemTemplate = check != null && check.Value ? ExtendedBikePointTemplate : StandardBikePointTemplate;
         }
 
-        private async void RefreshButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            GlobalHub.ScrollToSection(BikePoints);
-            BikeDataCollection.Clear();
-            _bikeMap.Children.Clear();
-            var temp = new ObservableCollection<CollectedDataGroup>();
-            Bikeimage.Visibility = Visibility.Collapsed;
-            var bikeDataGroups = await BikePointDataSource.GetGroupsAsync();
-            foreach (var item in bikeDataGroups.Where(item => item.CommonName != null))
-            {
-                temp.Add(new CollectedDataGroup(
-                    item.CommonName,
-                    item.Id,
-                    item.Lat,
-                    item.Lon,
-                    item.Url,
-                    item.AdditionalProperties[0].Value,
-                    item.AdditionalProperties[1].Value,
-                    item.AdditionalProperties[2].Value,
-                    item.AdditionalProperties[3].Value,
-                    item.AdditionalProperties[4].Value,
-                    item.AdditionalProperties[5].Value,
-                    item.AdditionalProperties[6].Value,
-                    item.AdditionalProperties[7].Value,
-                    item.AdditionalProperties[8].Value));
-
-                var pushpin = new Pushpin()
-                {
-                    Background = new SolidColorBrush(Colors.DodgerBlue)
-                };
-                MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
-                _bikeMap.Children.Add(pushpin);
-            }
-
-            BikeDataCollection.Add(temp);
-            ViewModel["BikesShort"] = BikeDataCollection;
-        }
 
         private async void FindMe_OnClick(object sender, RoutedEventArgs e)
         {
@@ -656,7 +627,7 @@ namespace Cycle_London
                     GlobalHub.ScrollToSection(MapSection);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _bikeMap.SetView(new Location(51.5072, 0.1275), 15);
                 GlobalHub.ScrollToSection(MapSection);
@@ -675,6 +646,7 @@ namespace Cycle_London
         #endregion
 
         #region OnLoaded Events
+        // ReSharper disable PossibleNullReferenceException
         private void BikeSearchCombo_OnLoaded(object sender, RoutedEventArgs e)
         {
             _searchBy = sender as ComboBox;
@@ -682,8 +654,8 @@ namespace Cycle_London
 
         private void ScrollViewer_OnLoaded(object sender, RoutedEventArgs e)
         {
-            var scroll = sender as ScrollViewer;
-            scroll.Height = Window.Current.Bounds.Height - 300;
+            _bikePointsScrollViewer = sender as ScrollViewer;
+            _bikePointsScrollViewer.Height = Window.Current.Bounds.Height - 300;
         }
 
         private void BikeListLoaded(object sender, RoutedEventArgs e)
@@ -713,7 +685,50 @@ namespace Cycle_London
         {
             _mainName = sender as TextBlock;
         }
+
+        private void MapInfo_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _mapInfoCanvas = sender as Canvas;
+        }
+        private void FrameworkElement_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _otherScrollViewer = sender as ScrollViewer;
+            _otherScrollViewer.Height = Window.Current.Bounds.Height - 250;
+        }
+        private void Map_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _mapScrollViewer = sender as ScrollViewer;
+
+            _mapScrollViewer.Height = Window.Current.Bounds.Height - 250;
+
+        }
+        private void Mapcanvas_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _mapCanvas = sender as Canvas;
+            _mapCanvas.Height = Window.Current.Bounds.Height - 250;
+        }
+
+        private void InfoRectangle_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _infoRectangle = sender as Rectangle;
+        }
+
+        private void InfoGrid_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            _infoGrid = sender as Grid;
+        }
+        // ReSharper restore PossibleNullReferenceException
         #endregion
+
+        private void HubPage_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            _bikePointsScrollViewer.Height = Window.Current.Bounds.Height - 300;
+            _otherScrollViewer.Height = Window.Current.Bounds.Height - 250;
+            _mapScrollViewer.Height = Window.Current.Bounds.Height - 250;
+            _mapCanvas.Height = Window.Current.Bounds.Height - 250;
+            Canvas.SetTop(_infoRectangle, _mapCanvas.Height - 120);
+            Canvas.SetTop(_infoGrid, _mapCanvas.Height - 120);
+        }
 
         #region NavigationHelper registration
 
@@ -738,10 +753,7 @@ namespace Cycle_London
 
         #endregion
 
-        private void MapInfo_OnLoaded(object sender, RoutedEventArgs e)
-        {
-            _mapInfoCanvas = sender as Canvas;
-        }
+
     }
 
 }

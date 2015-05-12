@@ -72,7 +72,7 @@ a:hover {
 .page-header {
     color: #FFFFFF;
     text-align: center;
-    background: #0070ff linear-gradient(0deg, #0070ff, #0095ff);
+    background: #0070ff linear-gradient(180deg, #0070ff, #0095ff);
 }
 
 @media screen and (min-width: 64em) {

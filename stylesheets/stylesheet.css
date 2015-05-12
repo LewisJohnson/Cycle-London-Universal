@@ -93,6 +93,30 @@ a:hover {
     }
 }
 
+.page-footer {
+    color: #FFFFFF;
+    text-align: center;
+    background: #0070ff linear-gradient(0deg, #0070ff, #0095ff);
+}
+
+@media screen and (min-width: 64em) {
+    .page-footer {
+        padding: 5rem 6rem;
+    }
+}
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+    .page-footer {
+        padding: 3rem 4rem;
+    }
+}
+
+@media screen and (max-width: 42em) {
+    .page-footer {
+        padding: 2rem 1rem;
+    }
+}
+
 .project-name {
     margin-top: 0;
     margin-bottom: 0.1rem;

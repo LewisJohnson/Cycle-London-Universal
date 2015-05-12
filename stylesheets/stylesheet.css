@@ -364,3 +364,23 @@ a:hover {
     }
 
 }
+
+
+
+#YoutubeOuter{
+max-width: 850px;
+max-height: 550px;
+width: 100%;
+height: 100%;
+}
+
+#YoutubeInner{
+    height: 550px;
+}
+
+#YoutubeInner iframe{
+    width: 100%;
+    height: 100%;
+}
+
+

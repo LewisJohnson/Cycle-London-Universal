@@ -154,7 +154,7 @@ namespace Cycle_London.DataModels
                 data = await response.Content.ReadAsStringAsync();
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                 Failed = true;
             }
@@ -190,7 +190,7 @@ namespace Cycle_London.DataModels
                         Groups.Add(@group);
                     }
                 }
-                catch (OperationCanceledException ex)
+                catch (OperationCanceledException)
                 {
                     Failed = true;
                 }

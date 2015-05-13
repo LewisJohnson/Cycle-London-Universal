@@ -1,0 +1,4 @@
+MainPackage=D:\GitHub\Cycle-London-Universal\Cycle_London\Cycle_London.Windows\bin\x86\Release\Cycle_London.Windows_1.1.0.0_Bundle\Cycle_London.Windows_1.1.0.0_x86.appx
+SymbolPackage=D:\GitHub\Cycle-London-Universal\Cycle_London\Cycle_London.Windows\AppPackages\Cycle_London.Windows_1.1.0.0_Test\Cycle_London.Windows_1.1.0.0_x86.appxsym
+ResourcePack=D:\GitHub\Cycle-London-Universal\Cycle_London\Cycle_London.Windows\bin\x86\Release\Cycle_London.Windows_1.1.0.0_Bundle\Cycle_London.Windows_1.1.0.0_scale-140.appx
+ResourcePack=D:\GitHub\Cycle-London-Universal\Cycle_London\Cycle_London.Windows\bin\x86\Release\Cycle_London.Windows_1.1.0.0_Bundle\Cycle_London.Windows_1.1.0.0_scale-180.appx

@@ -50,7 +50,7 @@ namespace Cycle_London
         private readonly Pushpin _selfpushpin = new Pushpin
         {
             Text = "!",
-            Background = new SolidColorBrush(Colors.OrangeRed)
+            Background = new SolidColorBrush(Colors.OrangeRed),
 
         };
 
@@ -155,7 +155,7 @@ namespace Cycle_London
                 var pushpin = new Pushpin
                 {
                     Background = new SolidColorBrush(Colors.DodgerBlue)
-                }
+                };
                 MapLayer.SetPosition(pushpin, new Location(item.Lat, item.Lon));
                 _bikeMap.Children.Add(pushpin);
                 pushpin.Tapped += BikePointPin_Tapped;

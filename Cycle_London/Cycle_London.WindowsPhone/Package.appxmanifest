@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="3a0d07f9-3a78-44c8-a7ff-488dd44d2463" Publisher="CN=Lewis" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="3a0d07f9-3a78-44c8-a7ff-488dd44d2463" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="2370LewisJohnson.CycleLondon" Publisher="CN=3D8FA9B1-6A1B-459B-B5E2-F846B8F98FF6" Version="1.1.0.0" />
+  <mp:PhoneIdentity PhoneProductId="2838398f-d849-472a-afda-daf1c8e6ca9b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>CycleLondon</DisplayName>
+    <DisplayName>Cycle London</DisplayName>
     <PublisherDisplayName>Lewis Johnson</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -23,7 +23,7 @@
             <m3:ShowOn Tile="wide310x150Logo" />
           </m3:ShowNameOnTiles>
         </m3:DefaultTile>
-        <m3:SplashScreen Image="Assets\SplashScreen.png" />
+        <m3:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="dodgerBlue" />
         <m3:InitialRotationPreference>
           <m3:Rotation Preference="portrait" />
         </m3:InitialRotationPreference>

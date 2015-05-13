@@ -1,5 +1,5 @@
 # Cycle London
-## Helping you get around London, easier.
+#### Making cycling in London easy
 
 Judges, build instructions at the buttom.
 

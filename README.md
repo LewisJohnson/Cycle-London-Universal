@@ -8,6 +8,7 @@ Judges, build instructions at the bottom.
 * Website: http://lewisj489.github.io/Cycle-London-Universal/
 * Store App: http://apps.microsoft.com/windows/en-gb/app/cycle-london/a0964f6e-a9b8-4079-90c5-97307569b4a9
 * Phone App: Not ready.
+* Privacy Policy: http://lewisj489.github.io/Cycle-London-Universal/privacy
 
 ***Please note*** that the *website* and *video* was only made for fun and should not be taken critical.
 

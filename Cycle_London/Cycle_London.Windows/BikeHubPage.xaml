@@ -4,9 +4,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:bm="using:Bing.Maps"
-    x:Class="Cycle_London.HubPage"
+    x:Class="Cycle_London.BikeHubPage"
     DataContext="{Binding ViewModel, RelativeSource={RelativeSource Mode=Self}}"
-    mc:Ignorable="d" Name="HubPagePage" SizeChanged="HubPage_OnSizeChanged">
+    mc:Ignorable="d" Loaded="BikeHubPage_OnLoaded">
 
     <Page.Resources>
         <DataTemplate x:Key="HubSectionHeaderTemplate">
@@ -158,7 +158,7 @@
     </Page.BottomAppBar>
 
     <Grid>
-        <Hub x:Uid="Hub" x:Name="GlobalHub" Header="Cycle London">
+        <Hub x:Uid="Hub" x:Name="BikeHub">
 
             <!-- MAP !-->
             <HubSection x:Name="MapSection" Header="FIND A BIKE" HeaderTemplate="{ThemeResource HubSectionHeaderTemplate}">

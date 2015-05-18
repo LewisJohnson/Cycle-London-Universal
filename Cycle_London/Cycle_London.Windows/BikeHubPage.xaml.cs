@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 using Windows.Devices.Geolocation;
+using Windows.Devices.Sensors;
 using Windows.System;
 using Windows.UI;
 using Windows.UI.Popups;
@@ -23,7 +25,7 @@ namespace Cycle_London
     /// <summary>
     /// A page that displays a grouped collection of items.
     /// </summary>
-    public sealed partial class HubPage
+    public sealed partial class BikeHubPage
     {
         #region Properties and stuff
 
@@ -40,12 +42,13 @@ namespace Cycle_London
         private TextBlock _mainDocks = new TextBlock();
         private TextBlock _mainBikes = new TextBlock();
         private Canvas _mapInfoCanvas = new Canvas();
-        private ScrollViewer _bikePointsScrollViewer = new ScrollViewer();
-        private ScrollViewer _otherScrollViewer = new ScrollViewer();
-        private ScrollViewer _mapScrollViewer = new ScrollViewer();
-        private Canvas _mapCanvas = new Canvas();
-        private Rectangle _infoRectangle = new Rectangle();
-        private Grid _infoGrid = new Grid();
+        private static ScrollViewer _bikePointsScrollViewer = new ScrollViewer();
+        private static ScrollViewer _otherScrollViewer = new ScrollViewer();
+        private static ScrollViewer _mapScrollViewer = new ScrollViewer();
+        private static Canvas _mapCanvas = new Canvas();
+        private static Rectangle _infoRectangle = new Rectangle();
+        private static Grid _infoGrid = new Grid();
+        private static Page _hubPage = new Page(); 
 
         private readonly Pushpin _selfpushpin = new Pushpin
         {
@@ -53,6 +56,7 @@ namespace Cycle_London
             Background = new SolidColorBrush(Colors.OrangeRed),
 
         };
+
 
         //-----------------------------------//
 
@@ -64,6 +68,7 @@ namespace Cycle_London
         private double _descTextLarge = 20;
         private double _descTextSmall = 11;
         private int _ringCount;
+        public static bool HubPageLoaded;
 
         //-----------------------------------//
 
@@ -96,9 +101,15 @@ namespace Cycle_London
         public IEnumerable<DataGroup> BikeDataGroups { get; set; }
 
 
+        public static Page HubPage
+        {
+            get { return _hubPage; }
+            set { _hubPage = value; }
+        }
+
         #endregion
 
-        public HubPage()
+        public BikeHubPage()
         {
             InitializeComponent();
             _navigationHelper = new NavigationHelper(this);
@@ -118,6 +129,7 @@ namespace Cycle_London
         /// session.  The state will be null the first time a page is visited.</param>
         private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
+            HubPageLoaded = true;
             await GetData();
             Canvas.SetTop(_infoRectangle, _mapCanvas.Height - 120);
             Canvas.SetTop(_infoGrid, _mapCanvas.Height - 120);
@@ -624,13 +636,13 @@ namespace Cycle_London
                     _bikeMap.Children.Remove(_selfpushpin);
                     _bikeMap.Children.Add(_selfpushpin);
 
-                    GlobalHub.ScrollToSection(MapSection);
+                    BikeHub.ScrollToSection(MapSection);
                 }
             }
             catch (Exception)
             {
                 _bikeMap.SetView(new Location(51.5072, 0.1275), 15);
-                GlobalHub.ScrollToSection(MapSection);
+                BikeHub.ScrollToSection(MapSection);
             }
         }
 
@@ -720,14 +732,14 @@ namespace Cycle_London
         // ReSharper restore PossibleNullReferenceException
         #endregion
 
-        private void HubPage_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        public static void HubPage_OnSizeChanged()
         {
-            _bikePointsScrollViewer.Height = Window.Current.Bounds.Height - 300;
-            _otherScrollViewer.Height = Window.Current.Bounds.Height - 250;
-            _mapScrollViewer.Height = Window.Current.Bounds.Height - 250;
-            _mapCanvas.Height = Window.Current.Bounds.Height - 250;
-            Canvas.SetTop(_infoRectangle, _mapCanvas.Height - 120);
-            Canvas.SetTop(_infoGrid, _mapCanvas.Height - 120);
+            _bikePointsScrollViewer.Height = Window.Current.Bounds.Height - 320;
+            _otherScrollViewer.Height = Window.Current.Bounds.Height - 270;
+            _mapScrollViewer.Height = Window.Current.Bounds.Height - 270;
+            _mapCanvas.Height = Window.Current.Bounds.Height - 270;
+            Canvas.SetTop(_infoRectangle, _mapCanvas.Height - 140);
+            Canvas.SetTop(_infoGrid, _mapCanvas.Height - 140);
         }
 
         #region NavigationHelper registration
@@ -754,6 +766,10 @@ namespace Cycle_London
         #endregion
 
 
+        private void BikeHubPage_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            HubPage = sender as Page;
+        }
     }
 
 }

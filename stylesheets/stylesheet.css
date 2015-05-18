@@ -9,6 +9,44 @@ body {
     font-size: 16px;
     line-height: 1.5;
     color: #606c71;
+    -moz-animation-name: Fadein;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: 1s;
+
+    -webkit-animation-name: Fadein;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 1s;
+
+    animation-name: Fadein;
+    animation-timing-function: ease-in;
+    animation-duration: 1s;
+}
+
+
+@-moz-keyframes Fadein {
+    0% {
+        -moz-opacity: 0;
+    }
+    100% {
+        -moz-opacity: 1;
+    }
+}
+@-webkit-keyframes Fadein {
+    0% {
+        -webkit-opacity: 0;
+
+    }
+    100% {
+        -webkit-opacity: 1;
+    }
+}
+@keyframes Fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+         opacity: 1;
+    }
 }
 
 a {

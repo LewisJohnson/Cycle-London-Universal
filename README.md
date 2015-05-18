@@ -6,8 +6,7 @@ Judges, build instructions at the bottom.
 ###Important links
 * [Promotional Video](http://youtu.be/-z3iZvoW3kw)
 * [Store App](http://apps.microsoft.com/windows/en-gb/app/cycle-london/a0964f6e-a9b8-4079-90c5-97307569b4a9)
-* Phone App: Not ready.
- 
+* [Phone App] Not ready
 * [Website](http://lewisj489.github.io/Cycle-London-Universal/)
 
 

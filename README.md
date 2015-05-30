@@ -1,4 +1,7 @@
 # Cycle London
+
+##WARNING: 
+If you are a judge for Programmr, please review this app as well as the new one. This app project has been deprecated in favour of the Windows 10 Successor. [Please go to the new repo ](https://github.com/lewisj489/LondonUniversal-Win10)
 #### Making cycling in London easy
 
 Judges, build instructions at the bottom.

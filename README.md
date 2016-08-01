@@ -3,7 +3,7 @@
 ####I won 2nd place! A big thanks to the guys over at Programmr
 http://www.programmr.com/hired_london_hackathon
 
-This app project may be deprecated in favour of the Windows 10 Successor. [Please visit the repo ](https://github.com/lewisj489/LondonUniversal-Win10)
+This app project may be deprecated in favour of the Windows 10 Successor. [Please visit the repo ](https://github.com/lewisjohnson/LondonUniversal-Win10)
 #### Making cycling in London easy
 
 
@@ -11,7 +11,7 @@ This app project may be deprecated in favour of the Windows 10 Successor. [Pleas
 * [Promotional Video](http://youtu.be/-z3iZvoW3kw)
 * [Store App](http://apps.microsoft.com/windows/en-gb/app/cycle-london/a0964f6e-a9b8-4079-90c5-97307569b4a9)
 * [Phone App] Not ready
-* [Website](http://lewisj489.github.io/Cycle-London-Universal/)
+* [Website](http://lewisjohnson.github.io/Cycle-London-Universal/)
 
 
 ***Please note*** that the *website* and *video* was only made for fun and should not be taken critical.
